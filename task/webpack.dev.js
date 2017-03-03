@@ -80,12 +80,6 @@ module.exports = function () {
         devServer: {
             historyApiFallback: true,
             inline: true,
-            stats: {
-                modules: false,
-                cached: false,
-                colors: true,
-                chunk: false
-            },
             port: 3000,
             host: '0.0.0.0'
         }

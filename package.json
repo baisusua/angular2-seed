@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "webpack-dev-server --inline --hot --colors",
-    "dll": "webpack --config ./task/dev.dll.js",
-    "dll:prod": "webpack --config ./task/prod.dll.js",
+    "dev": "webpack-dev-server --inline --hot --progress --profile --colors",
+    "dll": "webpack --config ./task/dev.dll.js --progress --profile",
+    "dll:prod": "webpack --config ./task/prod.dll.js --progress --profile",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jpush",
