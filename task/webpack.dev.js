@@ -8,7 +8,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 module.exports = function () {
     return {
         entry: {
-            app: [path.resolve(__dirname, '../src/config/polyfills'),path.resolve(__dirname, '../src/main.jit')]
+            app: [path.resolve(__dirname, '../src/config/polyfills'), path.resolve(__dirname, '../src/main.jit')]
         },
         output: {
             path: path.resolve(__dirname, '../dist'),
@@ -21,12 +21,22 @@ module.exports = function () {
         module: {
             rules: [{
                     test: /\.ts$/,
+                    use: [{
+                        loader: 'tslint-loader',
+                        options: {
+                            configFile: path.resolve(__dirname, '../tslint.json')
+                        }
+                    }],
+                    include: path.resolve(__dirname, '../src/app')
+                },
+                {
+                    test: /\.ts$/,
                     loaders: [{
                         loader: 'awesome-typescript-loader',
                         options: {
                             configFileName: path.resolve(__dirname, '../tsconfig.json'),
                         }
-                    },'@angularclass/hmr-loader', 'angular2-template-loader']
+                    }, '@angularclass/hmr-loader', 'angular2-template-loader']
                 },
                 {
                     test: /\.html$/,
