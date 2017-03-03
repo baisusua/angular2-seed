@@ -3,6 +3,8 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const HtmlStringReplace = require('html-string-replace-webpack-plugin');
 
 const DallWebpackConfig = require('./webpack.dall');
 const helpers = require('./helper');
@@ -10,15 +12,12 @@ const helpers = require('./helper');
 module.exports = function () {
     return {
         entry: {
-            polyfills: path.resolve(__dirname, '../src/config/polyfills'),
-            vendor: path.resolve(__dirname, '../src/config/vendor'),
-            app: path.resolve(__dirname, '../src/main.jit')
+            app: [path.resolve(__dirname, '../src/config/polyfills'),path.resolve(__dirname, '../src/main.jit')]
         },
         output: {
-            path: path.resolve(__dirname, './dist'),
+            path: path.resolve(__dirname, '../dist'),
             publicPath: 'http://localhost:3000/',
-            filename: '[name].js',
-            chunkFilename: '[id].chunk.js'
+            filename: 'index.js'
         },
         resolve: {
             extensions: ['.ts', '.js']
@@ -40,7 +39,7 @@ module.exports = function () {
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
-                    loader: 'file-loader?name=assets/images/[name].[hash].[ext]'
+                    loader: 'file-loader?name=assets/images/[name].[ext]'
                 },
                 {
                     test: /\.css$/,
@@ -54,37 +53,28 @@ module.exports = function () {
                 }
             ]
         },
-
         plugins: [
             new webpack.DllReferencePlugin({
-                context: __dirname,
-                manifest: require('../dall/polyfills-manifest.json')
-            }, {
-                context: __dirname,
-                manifest: require('../dall/vendor-manifest.json')
+                context: '.',
+                manifest: require('../dist/dall/polyfills-manifest.json')
             }),
-            new CopyWebpackPlugin([{
-                    from: path.resolve(__dirname, '../src/assets'),
-                    to: 'assets'
-                },
-                {
-                    from: path.resolve(__dirname, '../dall'),
-                    to: 'dall'
-                }
-            ]),
-            new webpack.optimize.OccurrenceOrderPlugin(),
-            new webpack.ContextReplacementPlugin(
-                /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
-                path.resolve(__dirname, './src'), // location of your src
-                {} // a map of your routes 
-            ),
-            new webpack.optimize.CommonsChunkPlugin({
-                name: ['app', 'vendor', 'polyfills']
+            new webpack.DllReferencePlugin({
+                context: '.',
+                manifest: require('../dist/dall/vendor-manifest.json')
             }),
             new HtmlWebpackPlugin({
-                filename: 'index.html',
+                filename: 'dist/index.html',
                 template: path.resolve(__dirname, '../src/index.html')
-            })
+            }),
+            new AddAssetHtmlPlugin([{
+                    filepath: 'dist/dall/polyfills.dll.js',
+                    includeSourcemap: false
+                },
+                {
+                    filepath: 'dist/dall/vendor.dll.js',
+                    includeSourcemap: false
+                }
+            ])
         ],
         devServer: {
             historyApiFallback: true,

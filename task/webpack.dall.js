@@ -4,17 +4,16 @@ const webpack = require('webpack');
 module.exports = {
     devtool: 'cheap-module-source-map',
     entry: {
-        polyfills: [path.resolve(__dirname, '../src/config/polyfills')],
-        vendor: [path.resolve(__dirname, '../src/config/vendor')]
+        polyfills:[path.resolve(__dirname, '../src/config/polyfills.ts')],
+        vendor: [path.resolve(__dirname, '../src/config/vendor.ts'),]
     },
     output: {
-        path: path.join(__dirname, '../dall'),
+        path: path.join(__dirname, '../dist/dall/'),
         filename: '[name].dll.js',
         library: '[name]_library'
     },
     resolve: {
-        extensions: ['.ts', '.js', '.json'],
-        modules: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../node_modules')],
+        extensions: ['.ts', '.js', '.json']
     },
     module: {
         rules: [{
@@ -58,16 +57,8 @@ module.exports = {
     },
     plugins: [
         new webpack.DllPlugin({
-            path: path.join(__dirname, '../dall/[name]-manifest.json'),
+            path: path.join(__dirname, '../dist/dall/[name]-manifest.json'),
             name: '[name]_library'
         })
-    ],
-    node: {
-        global: true,
-        crypto: 'empty',
-        process: true,
-        module: false,
-        clearImmediate: false,
-        setImmediate: false
-    }
+    ]
 }
