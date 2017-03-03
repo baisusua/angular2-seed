@@ -4,9 +4,7 @@ const path = require('path');
 const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const HtmlStringReplace = require('html-string-replace-webpack-plugin');
 
-const DallWebpackConfig = require('./webpack.dall');
 const helpers = require('./helper');
 
 module.exports = function () {
@@ -56,22 +54,22 @@ module.exports = function () {
         plugins: [
             new webpack.DllReferencePlugin({
                 context: '.',
-                manifest: require('../dist/dall/polyfills-manifest.json')
+                manifest: require('../src/dll/polyfills-manifest.json')
             }),
             new webpack.DllReferencePlugin({
                 context: '.',
-                manifest: require('../dist/dall/vendor-manifest.json')
+                manifest: require('../src/dll/vendor-manifest.json')
             }),
             new HtmlWebpackPlugin({
-                filename: 'dist/index.html',
+                filename: 'index.html',
                 template: path.resolve(__dirname, '../src/index.html')
             }),
             new AddAssetHtmlPlugin([{
-                    filepath: 'dist/dall/polyfills.dll.js',
+                    filepath: 'src/dll/polyfills.dll.js',
                     includeSourcemap: false
                 },
                 {
-                    filepath: 'dist/dall/vendor.dll.js',
+                    filepath: 'src/dll/vendor.dll.js',
                     includeSourcemap: false
                 }
             ])

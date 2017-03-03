@@ -8,7 +8,7 @@ module.exports = {
         vendor: [path.resolve(__dirname, '../src/config/vendor.ts'),]
     },
     output: {
-        path: path.join(__dirname, '../dist/dall/'),
+        path: path.join(__dirname, '../src/dll/'),
         filename: '[name].dll.js',
         library: '[name]_library'
     },
@@ -57,7 +57,7 @@ module.exports = {
     },
     plugins: [
         new webpack.DllPlugin({
-            path: path.join(__dirname, '../dist/dall/[name]-manifest.json'),
+            path: path.join(__dirname, '../src/dll/[name]-manifest.json'),
             name: '[name]_library'
         })
     ]
