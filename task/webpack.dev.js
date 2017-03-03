@@ -52,6 +52,11 @@ module.exports = function () {
             ]
         },
         plugins: [
+            new webpack.ContextReplacementPlugin(
+                /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+                path.resolve(__dirname, '../src'), // location of your src
+                {} // a map of your routes 
+            ),
             new webpack.DllReferencePlugin({
                 context: '.',
                 manifest: require('../src/dll/polyfills-manifest.json')

@@ -4,8 +4,8 @@ const webpack = require('webpack');
 module.exports = {
     devtool: 'cheap-module-source-map',
     entry: {
-        polyfills:[path.resolve(__dirname, '../src/config/polyfills.ts')],
-        vendor: [path.resolve(__dirname, '../src/config/vendor.ts'),]
+        polyfills: [path.resolve(__dirname, '../src/config/polyfills.ts')],
+        vendor: [path.resolve(__dirname, '../src/config/vendor.ts'), ]
     },
     output: {
         path: path.join(__dirname, '../src/dll/'),
@@ -56,6 +56,11 @@ module.exports = {
         ]
     },
     plugins: [
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            path.resolve(__dirname, '../src'), // location of your src
+            {} // a map of your routes 
+        ),
         new webpack.DllPlugin({
             path: path.join(__dirname, '../src/dll/[name]-manifest.json'),
             name: '[name]_library'
