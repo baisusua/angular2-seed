@@ -26,7 +26,7 @@ module.exports = function () {
                         options: {
                             configFileName: path.resolve(__dirname, '../tsconfig.json'),
                         }
-                    }, 'angular2-template-loader']
+                    },'@angularclass/hmr-loader', 'angular2-template-loader']
                 },
                 {
                     test: /\.html$/,
