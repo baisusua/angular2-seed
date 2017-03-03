@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --colors",
-    "dll": "webpack --config ./task/webpack.dll.js",
+    "dll": "webpack --config ./task/dev.dll.js",
+    "dll:prod": "webpack --config ./task/prod.dll.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "jpush",

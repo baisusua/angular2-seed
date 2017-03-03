@@ -5,8 +5,6 @@ const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-const helpers = require('./helper');
-
 module.exports = function () {
     return {
         entry: {
