@@ -1,6 +1,11 @@
-var webpack = require('webpack');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
-var path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
+const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
+
+const DallWebpackConfig = require('./webpack.dall');
+const helpers = require('./helper');
 
 module.exports = function () {
     return {
@@ -30,7 +35,8 @@ module.exports = function () {
                 },
                 {
                     test: /\.html$/,
-                    loader: 'html-loader'
+                    loader: 'html-loader',
+                    exclude: path.resolve(__dirname, '../src/index.html')
                 },
                 {
                     test: /\.(png|jpe?g|gif|svg|woff|woff2|ttf|eot|ico)$/,
@@ -50,6 +56,22 @@ module.exports = function () {
         },
 
         plugins: [
+            new webpack.DllReferencePlugin({
+                context: __dirname,
+                manifest: require('../dall/polyfills-manifest.json')
+            }, {
+                context: __dirname,
+                manifest: require('../dall/vendor-manifest.json')
+            }),
+            new CopyWebpackPlugin([{
+                    from: path.resolve(__dirname, '../src/assets'),
+                    to: 'assets'
+                },
+                {
+                    from: path.resolve(__dirname, '../dall'),
+                    to: 'dall'
+                }
+            ]),
             new webpack.optimize.OccurrenceOrderPlugin(),
             new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
