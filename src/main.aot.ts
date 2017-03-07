@@ -7,8 +7,8 @@ import {
 } from '@angular/core';
 
 import {
-  AppModule
-} from './app/app.module';
+  AppModuleNgFactory
+} from '../compiled/src/app/app.module.ngfactory';
 
 enableProdMode();
-platformBrowser().bootstrapModule(AppModule);
+platformBrowser().bootstrapModuleFactory(AppModuleNgFactory);
