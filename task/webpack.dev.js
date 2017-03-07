@@ -50,6 +50,10 @@ module.exports = function () {
             ]
         },
         plugins: [
+            new webpack.DefinePlugin({
+                'process.env.NODE_ENV': JSON.stringify('dev'),
+                'process.env.API_URL': JSON.stringify('xxx--开发API地址--xxx')
+            }),
             new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
                 path.resolve(__dirname, '../src'), // location of your src
