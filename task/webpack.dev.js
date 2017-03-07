@@ -21,16 +21,6 @@ module.exports = function () {
         module: {
             rules: [{
                     test: /\.ts$/,
-                    use: [{
-                        loader: 'tslint-loader',
-                        options: {
-                            configFile: path.resolve(__dirname, '../tslint.json')
-                        }
-                    }],
-                    include: path.resolve(__dirname, '../src/app')
-                },
-                {
-                    test: /\.ts$/,
                     loaders: [{
                         loader: 'awesome-typescript-loader',
                         options: {
@@ -65,6 +55,10 @@ module.exports = function () {
                 path.resolve(__dirname, '../src'), // location of your src
                 {} // a map of your routes 
             ),
+            new CopyWebpackPlugin([{
+                from: path.resolve(__dirname, '../src/assets/'),
+                to: './assets/',
+            }]),
             new webpack.DllReferencePlugin({
                 context: '.',
                 manifest: require('../src/dll/polyfills-manifest.json')
