@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dev": "webpack-dev-server --inline --hot --progress --profile --colors",
+    "prod": "webpack --config ./task/webpack.prod.js --progress --profile --colors",
     "dll": "webpack --config ./task/dev.dll.js --progress --profile",
     "dll:prod": "webpack --config ./task/prod.dll.js --progress --profile",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,6 +13,8 @@
   "author": "jpush",
   "license": "ISC",
   "devDependencies": {
+    "@angular/compiler": "^2.4.9",
+    "@angular/compiler-cli": "^2.4.9",
     "@angularclass/hmr": "^1.2.2",
     "@angularclass/hmr-loader": "^3.0.2",
     "@types/core-js": "^0.9.35",
@@ -36,6 +39,8 @@
     "html-loader": "^0.4.5",
     "html-webpack-plugin": "^2.28.0",
     "json-loader": "^0.5.4",
+    "ng-router-loader": "^2.1.0",
+    "optimize-js-plugin": "0.0.4",
     "path": "^0.12.7",
     "raw-loader": "^0.5.1",
     "style-loader": "^0.13.2",

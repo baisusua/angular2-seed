@@ -10,6 +10,13 @@ DllConfig.plugins = [
         {} // a map of your routes 
     ),
     new webpack.optimize.UglifyJsPlugin({
+        beautify: false,
+        output: {
+            comments: false
+        },
+        mangle: {
+            screw_ie8: true
+        },
         compress: {
             warnings: false
         }
