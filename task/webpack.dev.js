@@ -60,8 +60,8 @@ module.exports = function () {
                 {} // a map of your routes 
             ),
             new CopyWebpackPlugin([{
-                from: path.resolve(__dirname, '../src/assets/'),
-                to: './assets/',
+                from: path.resolve(__dirname, '../src/assets/static/'),
+                to: './assets/static/',
             }]),
             new webpack.DllReferencePlugin({
                 context: '.',

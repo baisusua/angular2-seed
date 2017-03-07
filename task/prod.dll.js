@@ -14,9 +14,6 @@ DllConfig.plugins = [
         output: {
             comments: false
         },
-        mangle: {
-            screw_ie8: true
-        },
         compress: {
             warnings: false
         }

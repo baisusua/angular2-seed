@@ -7,6 +7,7 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CheckerPlugin = require('awesome-typescript-loader').CheckerPlugin;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const OptimizeJsPlugin = require('optimize-js-plugin');
+const ngcWebpack = require('ngc-webpack');
 
 module.exports = function () {
     return {
@@ -34,7 +35,7 @@ module.exports = function () {
                 }, {
                     loader: 'awesome-typescript-loader',
                     options: {
-                        configFileName: 'tsconfig.aot.json',
+                        configFileName: 'tsconfig.aot.json'
                     }
                 }, {
                     loader: 'angular2-template-loader'
@@ -71,8 +72,8 @@ module.exports = function () {
                 {} // a map of your routes 
             ),
             new CopyWebpackPlugin([{
-                from: path.resolve(__dirname, '../src/assets/'),
-                to: './assets/',
+                from: path.resolve(__dirname, '../src/assets/static/'),
+                to: './assets/static/',
             }]),
             new webpack.DllReferencePlugin({
                 context: '.',
@@ -81,6 +82,11 @@ module.exports = function () {
             new webpack.DllReferencePlugin({
                 context: '.',
                 manifest: require('../src/dll/vendor-manifest.json')
+            }),
+            new ngcWebpack.NgcWebpackPlugin({
+                disabled: false,
+                tsConfig: path.resolve(__dirname, '../tsconfig.aot.json'),
+                resourceOverride: path.resolve(__dirname, '../src/config/resource-override.js'),
             }),
             new CheckerPlugin(),
             new OptimizeJsPlugin({
@@ -91,9 +97,6 @@ module.exports = function () {
                 beautify: false,
                 output: {
                     comments: false
-                },
-                mangle: {
-                    screw_ie8: true
                 },
                 compress: {
                     warnings: false
