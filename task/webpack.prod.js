@@ -13,12 +13,14 @@ const WebpackMd5Hash = require('webpack-md5-hash');
 module.exports = function () {
     return {
         entry: {
-            app: [path.resolve(__dirname, '../src/config/polyfills'), path.resolve(__dirname, '../src/main.aot')]
+            polyfills: path.resolve(__dirname, '../src/config/polyfills'),
+            vendor: path.resolve(__dirname, '../src/config/vendor'),
+            app: path.resolve(__dirname, '../src/main.aot')
         },
         output: {
             path: path.resolve(__dirname, '../dist'),
             publicPath: './',
-            filename: 'index.[chunkhash].js'
+            filename: '[name].[chunkhash:8].js'
         },
         resolve: {
             extensions: ['.ts', '.js']
@@ -83,14 +85,6 @@ module.exports = function () {
                 from: path.resolve(__dirname, '../src/assets/static/'),
                 to: './assets/static/',
             }]),
-            new webpack.DllReferencePlugin({
-                context: '.',
-                manifest: require('../src/dll/polyfills-manifest.json')
-            }),
-            new webpack.DllReferencePlugin({
-                context: '.',
-                manifest: require('../src/dll/vendor-manifest.json')
-            }),
             new ngcWebpack.NgcWebpackPlugin({
                 disabled: false,
                 tsConfig: path.resolve(__dirname, '../tsconfig.aot.json'),
@@ -99,6 +93,9 @@ module.exports = function () {
             new CheckerPlugin(),
             new OptimizeJsPlugin({
                 sourceMap: false
+            }),
+            new webpack.optimize.CommonsChunkPlugin({
+                name: ['app', 'vendor', 'polyfills']
             }),
             new ExtractTextPlugin('vender.[contenthash:8].css'),
             new webpack.optimize.UglifyJsPlugin({
@@ -113,16 +110,7 @@ module.exports = function () {
             new HtmlWebpackPlugin({
                 filename: 'index.html',
                 template: path.resolve(__dirname, '../src/index.html')
-            }),
-            new AddAssetHtmlPlugin([{
-                    filepath: 'src/dll/polyfills.dll.js',
-                    includeSourcemap: false
-                },
-                {
-                    filepath: 'src/dll/vendor.dll.js',
-                    includeSourcemap: false
-                }
-            ])
+            })
         ]
     };
 }
