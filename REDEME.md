@@ -35,7 +35,7 @@
 ```
 angular2-seed/
  │──task/                          * 项目构建任务
- │   │config.conf                * 项目构建配置
+ │   │config.json                * 项目构建配置
  │   │──dev.dll.js                 * 生成无压缩dll
  │   │──prod.dll.js                * 生成压缩dll
  │   │──dll.config.js              * 生成dll公共配置
@@ -89,15 +89,15 @@ angular2-seed/
 ## 开发
 * `npm install`
 * `npm run dll` 或者 `npm run dll:prod`
-* `npm run dev`（默认读取`config.conf`中dev的api配置）
-* `npm run dev:A` （默认读取`config.conf`中A的api配置）
+* `npm run dev`（默认读取`task/config.json`中dev的api配置）
+* 修改`package.json`中的env为 `env:A` （读取`task/config.json`中A的api配置）
 * `http://localhost:3000`
 
 ## 发布
-* 在`task/config.conf`中配置环境A
+* 在`task/config.json`中配置环境A
 * `gulp A`
 
-## config.config配置模板
+## task/config.json配置模板
 
 ```{
     "dev": {
@@ -105,14 +105,16 @@ angular2-seed/
         "ak": "xxxx",
         "sk": "xxxx",
         "bk": "xxxx",
-        "git": "xxxx"
+        "git": "xxxx",
+        "env": "dev",
     },
     "A": {
         "api": "xxxx",
         "ak": "xxxx",
         "sk": "xxxx",
         "bk": "xxxx",
-        "git": "xxxx"
+        "git": "xxxx",
+        "env": "dev"
     },
     "v":"0.2"
 }

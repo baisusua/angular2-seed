@@ -97,7 +97,7 @@ module.exports = function () {
             new webpack.optimize.CommonsChunkPlugin({
                 name: ['app', 'vendor', 'polyfills']
             }),
-            new ExtractTextPlugin('vender.[contenthash:8].css'),
+            new ExtractTextPlugin('vendor.[contenthash:8].css'),
             new webpack.optimize.UglifyJsPlugin({
                 beautify: false,
                 output: {

@@ -1,0 +1,19 @@
+{
+    "dev":{
+        "api": "测试API",
+        "ak": "xxxx",
+        "sk": "xxxx",
+        "bk": "xxxx",
+        "git": "xxxx",
+        "env": "dev"
+    },
+    "test":{
+        "api": "testapi",
+        "ak": "xxxx",
+        "sk": "xxxx",
+        "bk": "xxxx",
+        "git": "xxxx",
+        "env": "test"
+    },
+    "v":"0.2"
+}

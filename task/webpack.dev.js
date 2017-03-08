@@ -5,7 +5,11 @@ const DllBundlesPlugin = require('webpack-dll-bundles-plugin').DllBundlesPlugin;
 const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
-module.exports = function () {
+module.exports = function (config) {
+   if(!config){
+       console.log("请在task/config.json中配置相关信息！");
+       return null;
+   }
     return {
         entry: {
             app: [path.resolve(__dirname, '../src/config/polyfills'), path.resolve(__dirname, '../src/main.jit')]
@@ -51,8 +55,8 @@ module.exports = function () {
         },
         plugins: [
             new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify('dev'),
-                'process.env.API_URL': JSON.stringify('xxx--开发API地址--xxx')
+                'process.env.NODE_ENV': JSON.stringify(config.env),
+                'process.env.API_URL': JSON.stringify(config.api)
             }),
             new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
