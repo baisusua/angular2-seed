@@ -37,6 +37,7 @@
     "fs": "0.0.1-security",
     "gulp": "^3.9.1",
     "gulp-clean": "^0.3.2",
+    "gulp-git": "^2.0.1",
     "gulp-qiniu": "^0.2.4",
     "gulp-replace": "^0.5.4",
     "gulp-sequence": "^0.4.6",
