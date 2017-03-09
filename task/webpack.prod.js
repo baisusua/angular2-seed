@@ -10,7 +10,7 @@ const OptimizeJsPlugin = require('optimize-js-plugin');
 const ngcWebpack = require('ngc-webpack');
 const WebpackMd5Hash = require('webpack-md5-hash');
 
-module.exports = function () {
+module.exports = function (config,v) {
     return {
         entry: {
             polyfills: path.resolve(__dirname, '../src/config/polyfills'),
@@ -19,7 +19,7 @@ module.exports = function () {
         },
         output: {
             path: path.resolve(__dirname, '../dist'),
-            publicPath: './',
+            publicPath: config.url+v+'/',
             filename: '[name].[chunkhash:8].js'
         },
         resolve: {
@@ -72,8 +72,8 @@ module.exports = function () {
         },
         plugins: [
             new webpack.DefinePlugin({
-                'process.env.NODE_ENV': JSON.stringify('prod'),
-                'process.env.API_URL': JSON.stringify('xxx--生产API地址--xxx')
+                'process.env.NODE_ENV': JSON.stringify(config.env),
+                'process.env.API_URL': JSON.stringify(config.api)
             }),
             new webpack.ContextReplacementPlugin(
                 /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,

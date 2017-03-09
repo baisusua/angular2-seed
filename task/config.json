@@ -1,19 +1,21 @@
 {
-    "dev":{
-        "api": "测试API",
-        "ak": "xxxx",
-        "sk": "xxxx",
-        "bk": "xxxx",
+    "dev": {
+        "url": "http://7xo28s.com1.z0.glb.clouddn.com/iapp/",
+        "ak": "n0xHeJp2B4bPQkQH9T89t2IsxkGAwZjO66dmWtzk",
+        "sk": "WOOFQZb_-lalCibXnMMyNfke2BUoyqV7uPzzTPjP",
+        "bk": "test",
         "git": "xxxx",
+        "api": "测试API",
         "env": "dev"
     },
-    "test":{
-        "api": "testapi",
+    "test": {
+        "url": "xxx",
         "ak": "xxxx",
         "sk": "xxxx",
         "bk": "xxxx",
         "git": "xxxx",
+        "api": "testapi",
         "env": "test"
     },
-    "v":"0.2"
+    "v": "0.2"
 }
