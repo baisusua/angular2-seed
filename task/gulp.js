@@ -14,9 +14,8 @@ const WebpackConfig = require('./webpack.prod')(config[type], config.v);
 清除任务
 */
 gulp.task('clean', function () {
-    return gulp.src(['./dist', './compiled'])
+    return gulp.src(['./dist/*.html','./dist/*.css', './dist/*.js','./dist/assets/**','./compiled'])
         .pipe(clean());
-
 })
 
 /*
