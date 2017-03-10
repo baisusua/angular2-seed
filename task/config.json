@@ -1,16 +1,16 @@
 {
     "dev": {
-        "url": "http://7xo28s.com1.z0.glb.clouddn.com/iapp/",
-        "ak": "n0xHeJp2B4bPQkQH9T89t2IsxkGAwZjO66dmWtzk",
-        "sk": "WOOFQZb_-lalCibXnMMyNfke2BUoyqV7uPzzTPjP",
-        "bk": "test",
-        "remote": "git@github.com:baisusua/gittest.git",
-        "branch": "dev",
-        "api": "测试API",
+        "url": "xxxx",
+        "ak": "xxxx",
+        "sk": "xxxx",
+        "bk": "xxxx",
+        "remote": "xxxx",
+        "branch": "xxxx",
+        "api": "xxxx",
         "env": "dev"
     },
-    "test": {
-        "url": "xxx",
+    "A": {
+        "url": "xxxx",
         "ak": "xxxx",
         "sk": "xxxx",
         "bk": "xxxx",
@@ -19,5 +19,5 @@
         "api": "testapi",
         "env": "test"
     },
-    "v": "0.5"
+    "v": "0.0.1"
 }

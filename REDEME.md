@@ -8,13 +8,13 @@
 
 >开发模式使用[ JIT ](https://angular.cn/docs/ts/latest/cookbook/aot-compiler.html#!#aot-jit)模式，生产模式使用[ AOT ](https://angular.cn/docs/ts/latest/cookbook/aot-compiler.html#!#aot-jit)模式
 
->第三方库存配置文件： `src/config/vendor.ts`
+>第三方库配置文件： `src/config/vendor.ts`
 
->angular[填充库](https://angular.cn/docs/ts/latest/guide/browser-support.html)配置文件：`src/config/polyfill`
+>angular2[填充库](https://angular.cn/docs/ts/latest/guide/browser-support.html)配置文件：`src/config/polyfill`
 
 >暂无测试模式~
 
->项目构建相关文件统一放在[ task ]()目录下
+>项目构建相关文件统一放在 `task` 目录下
 
 >项目无需编译的静态资源目录：`src/assets/static`
 
@@ -23,13 +23,14 @@
 * 使用dll插件提升构建速度
 * dll相关配置文件：`dll.config.js` `dev.dll.js` `prod.dll.js`
 * 项目更改了依赖库或者填充库需要使用 `npm run dll` 或 `npm run dll:prod` 重新生成dll文件
-* dll文件：`src/dll`
+* dll文件地址：`src/dll`
 * 无需编译的样式和JS库使用 `./assets/..` 相对路径引用，可以参考 `src/index.html` 文件
 
 生产模式
 
 * 使用Webpack编译文件
 * 使用Gulp发布文件
+* 通过push触发部署脚本自动部署
 
 ## 目录结构
 ```
@@ -68,12 +69,12 @@ angular2-seed/
  │   │   ├──service/               * 项目服务
  │   │   └──pages/                 * 项目页面
  │   │
- │   └──assets/                    * 资源目录
+ │   ├──assets/                    * 资源目录
  │   │   ├──css/                   * 样式资源（webpac处理） 
  │   │   ├──images/                * 图片资源（webpack处理）
  │   │   └──static/                * 静态资源（无需webpack处理） 
  │   │
- │   └──docs/                      * 项目文档
+ │   ├──docs/                      * 项目文档
  │   │
  │   └──compiled/                  * AOT临时编译文件（webpack任务生成）
  │
@@ -96,28 +97,35 @@ angular2-seed/
 ## 发布
 * 在`task/config.json`中配置环境A
 * `gulp A`
+* 如果没有配置环境A，默认使用dev环境
+* CDN资源地址为: `config.A.url+config.v`
+* CDN暂时只支持七牛云
+* 将打包好的index.html上传到发布仓库和对应分支，触发部署脚本自动部署发布
 
 ## task/config.json配置模板
 
 ```{
     "dev": {
-        "api": "xxxx",
-        "ak": "xxxx",
-        "sk": "xxxx",
-        "bk": "xxxx",
-        "git": "xxxx",
-        "env": "dev",
+        "url": "xxx",           //CDN地址
+        "ak": "xxxx",           //七牛AK
+        "sk": "xxxx",           //七牛SK
+        "bk": "xxxx",           //七牛空间名称
+        "remote": "xxxx",       //远程git仓库地址
+        "branch": "xxxx",       //远程仓库发布分支
+        "api": "testapi",       //API前缀
+        "env": "test"           //设置开发环境变量
     },
     "A": {
-        "api": "xxxx",
+        "url": "xxx",
         "ak": "xxxx",
         "sk": "xxxx",
         "bk": "xxxx",
-        "git": "xxxx",
-        "env": "dev"
+        "remote": "xxxx",
+        "branch": "xxxx",
+        "api": "testapi",
+        "env": "test"
     },
-    "v":"0.2"
+    "v":"0.0.1"                 //版本号
 }
 ```
-* 
 
