@@ -5,6 +5,10 @@ import {
 } from '@angular/router';
 
 import {
+    LoginComponent
+} from '../pages/login';
+
+import {
     ListComponent
 } from '../pages/list';
 
@@ -13,6 +17,9 @@ import {
 } from '../pages/fund';
 
 const ROUTES: Routes = [{
+    path: 'login',
+    component: LoginComponent
+}, {
     path: 'list',
     component: ListComponent
 }, {

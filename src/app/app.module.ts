@@ -33,6 +33,10 @@ import {
 } from './pages/index/index.component';
 
 import {
+    LoginComponent
+} from './pages/login'
+
+import {
     ListComponent
 } from './pages/list'
 
@@ -51,6 +55,7 @@ import '../assets/css/common.css';
     ],
     declarations: [
         AppComponent,
+        LoginComponent,
         ListComponent,
         FundComponent
     ],

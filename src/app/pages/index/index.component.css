@@ -1,7 +1,11 @@
 main {
-  padding: 1em;
-  font-family: Arial, Helvetica, sans-serif;
+  min-height: 880px;
   text-align: center;
-  margin-top: 50px;
   display: block;
+}
+.iAPP-header{
+  height: 100px;
+  line-height: 100px;
+  background-color: burlywood;
+  color:#666666;
 }
