@@ -103,8 +103,8 @@ angular2-seed/
 * 将打包好的index.html上传到发布仓库和对应分支，触发部署脚本自动部署发布
 
 ## task/config.json配置模板
-
-```{
+```
+{
     "dev": {
         "url": "xxx",           //CDN地址
         "ak": "xxxx",           //七牛AK
@@ -127,5 +127,6 @@ angular2-seed/
     },
     "v":"0.0.1"                 //版本号
 }
+
 ```
 
