@@ -1,5 +1,7 @@
 import {
-    Routes
+    Routes,
+    RouterModule,
+    PreloadAllModules
 } from '@angular/router';
 
 import {
@@ -10,11 +12,21 @@ import {
     FundComponent
 } from '../pages/fund';
 
-export const ROUTES: Routes = [{
-        path: 'list',
-        component: ListComponent
-    },{
-        path: 'fund',
-        component: FundComponent
-    }
-];
+const ROUTES: Routes = [{
+    path: 'list',
+    component: ListComponent
+}, {
+    path: 'fund',
+    component: FundComponent
+},{
+    path: '**',
+    redirectTo: '/list',
+    pathMatch: 'full'
+}];
+
+export const routing = RouterModule.forRoot(ROUTES);
+
+// export const routing = RouterModule.forRoot(ROUTES, {
+//     useHash: false,
+//     preloadingStrategy: PreloadAllModules
+// });

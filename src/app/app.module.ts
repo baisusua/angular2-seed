@@ -25,7 +25,7 @@ import {
 } from '../config/hmr';
 
 import {
-    ROUTES
+    routing
 } from './router/app.router';
 
 import {
@@ -47,10 +47,7 @@ import '../assets/css/common.css';
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(ROUTES, {
-            useHash: true,
-            preloadingStrategy: PreloadAllModules
-        })
+        routing
     ],
     declarations: [
         AppComponent,
