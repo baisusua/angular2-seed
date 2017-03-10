@@ -4,7 +4,7 @@
         "ak": "n0xHeJp2B4bPQkQH9T89t2IsxkGAwZjO66dmWtzk",
         "sk": "WOOFQZb_-lalCibXnMMyNfke2BUoyqV7uPzzTPjP",
         "bk": "test",
-        "remote": "https://github.com/baisusua/gittest.git",
+        "remote": "git@github.com:baisusua/gittest.git",
         "branch": "dev",
         "api": "测试API",
         "env": "dev"
@@ -19,5 +19,5 @@
         "api": "testapi",
         "env": "test"
     },
-    "v": "0.4"
+    "v": "0.5"
 }
