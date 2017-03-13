@@ -26,7 +26,7 @@ import {
 
 import {
     routing
-} from './router/app.router';
+} from './app.router';
 
 import {
     AppComponent
@@ -35,10 +35,6 @@ import {
 import {
     LoginComponent
 } from './pages/login'
-
-import {
-    ListComponent
-} from './pages/list'
 
 import {
     FundComponent
@@ -56,7 +52,6 @@ import '../assets/css/common.css';
     declarations: [
         AppComponent,
         LoginComponent,
-        ListComponent,
         FundComponent
     ],
     bootstrap: [AppComponent]

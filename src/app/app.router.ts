@@ -6,22 +6,19 @@ import {
 
 import {
     LoginComponent
-} from '../pages/login';
-
-import {
-    ListComponent
-} from '../pages/list';
+} from './pages/login';
 
 import {
     FundComponent
-} from '../pages/fund';
+} from './pages/fund';
 
-const ROUTES: Routes = [{
+
+export const ROUTES: Routes = [{
     path: 'login',
     component: LoginComponent
 }, {
     path: 'list',
-    component: ListComponent
+    loadChildren:'./pages/list#ListModule'
 }, {
     path: 'fund',
     component: FundComponent
@@ -34,6 +31,6 @@ const ROUTES: Routes = [{
 export const routing = RouterModule.forRoot(ROUTES);
 
 // export const routing = RouterModule.forRoot(ROUTES, {
-//     useHash: false,
+//     useHash: true,
 //     preloadingStrategy: PreloadAllModules
 // });

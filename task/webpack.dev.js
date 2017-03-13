@@ -6,10 +6,10 @@ const AddAssetHtmlPlugin = require('add-asset-html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = function (config) {
-   if(!config){
-       console.log("请在task/config.json中配置相关信息！");
-       return null;
-   }
+    if (!config) {
+        console.log("请在task/config.json中配置相关信息！");
+        return null;
+    }
     return {
         entry: {
             app: [path.resolve(__dirname, '../src/config/polyfills'), path.resolve(__dirname, '../src/main.jit')]
@@ -26,11 +26,20 @@ module.exports = function (config) {
             rules: [{
                     test: /\.ts$/,
                     loaders: [{
-                        loader: 'awesome-typescript-loader',
-                        options: {
-                            configFileName: path.resolve(__dirname, '../tsconfig.json'),
-                        }
-                    }, '@angularclass/hmr-loader', 'angular2-template-loader']
+                            loader: 'ng-router-loader',
+                            options: {
+                                loader: 'async-import',
+                                genDir: 'compiled',
+                                aot: false
+                            }
+                        },{
+                            loader: 'awesome-typescript-loader',
+                            options: {
+                                configFileName: path.resolve(__dirname, '../tsconfig.json'),
+                            }
+                        }, '@angularclass/hmr-loader',
+                        'angular2-template-loader'
+                    ]
                 },
                 {
                     test: /\.html$/,
