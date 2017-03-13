@@ -38,7 +38,7 @@ module.exports = function (config,v) {
                     loader: 'ng-router-loader',
                     options: {
                         loader: 'async-import',
-                        genDir: path.resolve(__dirname, '../src/compiled'),
+                        genDir: 'compiled',
                         aot: true
                     }
                 }, {
